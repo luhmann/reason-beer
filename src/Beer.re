@@ -15,14 +15,21 @@ let make = (~name, ~description, ~image=?, _children) => {
       | None => ReasonReact.nullElement
       | Some(i_) =>
         <div
-          className="bg-contain bg-center bg-no-repeat h-48 w-auto sm:h-auto sm:w-64"
-          style=(ReactDOMRe.Style.make(~backgroundImage={j|url($i_)|j}, ()))
+          className="bg-contain bg-center flex-grow bg-no-repeat h-48 w-32 sm:h-auto sm:w-64"
+          style=(
+            ReactDOMRe.Style.make(
+              ~backgroundImage={j|url($i_)|j},
+              ~minWidth="8rem",
+              ()
+            )
+          )
         />
       };
-    <div className="shadow-lg rounded mb-4 overflow-hidden sm:flex max-w-md">
+    <div
+      className="shadow-lg rounded mb-4 overflow-hidden max-w-md p-3 sm:flex">
       imageItem
       <div className="p-4">
-        <h2 className="font-black mb-3">
+        <h2 className="font-black mb-3 tracking-wide">
           (ReasonReact.stringToElement(name))
         </h2>
         <p className="text-sm text-gray-dark">
