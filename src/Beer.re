@@ -13,15 +13,21 @@ let make = (~name, ~description, ~image=?, _children) => {
     let imageItem =
       switch image {
       | None => ReasonReact.nullElement
-      | Some(i_) => <img src=i_ />
+      | Some(i_) =>
+        <div
+          className="bg-contain bg-center bg-no-repeat h-48 w-auto sm:h-auto sm:w-64"
+          style=(ReactDOMRe.Style.make(~backgroundImage={j|url($i_)|j}, ()))
+        />
       };
-    <div>
+    <div className="shadow-lg rounded mb-4 overflow-hidden sm:flex max-w-md">
       imageItem
       <div className="p-4">
         <h2 className="font-black mb-3">
           (ReasonReact.stringToElement(name))
         </h2>
-        <p> (ReasonReact.stringToElement(description)) </p>
+        <p className="text-sm text-gray-dark">
+          (ReasonReact.stringToElement(description))
+        </p>
       </div>
     </div>;
   }
