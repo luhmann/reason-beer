@@ -2,11 +2,12 @@ type state = {searchText: string};
 
 type action =
   | Submit
+  | KeyDown(int)
   | Change(string);
 
 let component = ReasonReact.reducerComponent("Search");
 
-let make = (~onSubmit, _children) => {
+let make = (~placeholderText: string, ~onSubmit: string => unit, _children) => {
   let handleSubmit = state =>
     switch (String.trim(state.searchText)) {
     | "" => ReasonReact.NoUpdate
@@ -22,14 +23,17 @@ let make = (~onSubmit, _children) => {
           state => ReasonReact.Update({...state, searchText})
         )
       | Submit => handleSubmit
+      | KeyDown(13) => handleSubmit
+      | KeyDown(_) => (_state => ReasonReact.NoUpdate)
       },
-    render: ({state, handle, send}) =>
+    render: ({state, send}) =>
       <input
-        className="border p-2 rounded text-grey-darker appearance-none w-1/2"
+        className="border p-2 rounded text-grey-darker appearance-none w-full"
         _type="text"
-        placeholder="Type a search-term eg. 'skull'"
+        placeholder=placeholderText
         value=state.searchText
         onBlur=(_event => send(Submit))
+        onKeyDown=(event => send(KeyDown(ReactEventRe.Keyboard.which(event))))
         onChange=(
           event =>
             send(
