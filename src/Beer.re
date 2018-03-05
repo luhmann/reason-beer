@@ -4,10 +4,11 @@ type brew = {
   id: int,
   name: string,
   image: string,
-  description: string
+  description: string,
+  foodPairing: array(string)
 };
 
-let make = (~name, ~description, ~image=?, _children) => {
+let make = (~name, ~description, ~foodPairing, ~image=?, _children) => {
   ...component,
   render: _self => {
     let imageItem =
@@ -32,9 +33,20 @@ let make = (~name, ~description, ~image=?, _children) => {
         <h2 className="font-black mb-3 tracking-wide">
           (ReasonReact.stringToElement(name))
         </h2>
-        <p className="text-sm text-gray-dark">
+        <p className="text-sm text-gray-dark mb-4">
           (ReasonReact.stringToElement(description))
         </p>
+        <h3> (ReasonReact.stringToElement("Food Pairings")) </h3>
+        <ul className="text-sm text-gray-dark list-reset">
+          (
+            ReasonReact.arrayToElement(
+              foodPairing
+              |> Array.map(pairing =>
+                   <li> (ReasonReact.stringToElement(pairing)) </li>
+                 )
+            )
+          )
+        </ul>
       </div>
     </div>;
   }

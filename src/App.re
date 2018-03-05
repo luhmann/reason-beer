@@ -8,7 +8,8 @@ type foodPairingResponse = {
   id: int,
   name: string,
   description: string,
-  image_url: string
+  image_url: string,
+  food_pairing: array(string)
 };
 
 type state = {

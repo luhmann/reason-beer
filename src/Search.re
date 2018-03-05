@@ -28,7 +28,7 @@ let make = (~placeholderText: string, ~onSubmit: string => unit, _children) => {
       },
     render: ({state, send}) =>
       <input
-        className="border mb-2 p-2 rounded text-grey-darkest appearance-none w-full max-w-md"
+        className="border mb-4 p-2 rounded text-grey-darkest appearance-none w-full max-w-md"
         _type="text"
         placeholder=placeholderText
         value=state.searchText

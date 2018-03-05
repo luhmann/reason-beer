@@ -8,7 +8,8 @@ let mapBeerResponse = beerResponse =>
           id: beer##id,
           name: beer##name,
           description: beer##description,
-          image: beer##image_url
+          image: beer##image_url,
+          foodPairing: beer##food_pairing
         };
         item;
       },
