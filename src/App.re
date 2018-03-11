@@ -23,8 +23,7 @@ type action =
 
 let component = ReasonReact.reducerComponent("App");
 
-let shouldFetch = (stateId, searchText) =>
-  stateId !== LOADING && Js.String.length(searchText) > 0;
+let shouldFetch = stateId => stateId !== LOADING;
 
 let make = _children => {
   let fetchBeers = (self, searchTerm) =>
@@ -42,11 +41,12 @@ let make = _children => {
     initialState: () => {id: NOT_ASKED, beers: []},
     reducer: (action, state) =>
       switch action {
-      | FETCH_BEERS(searchText) when shouldFetch(state.id, searchText) =>
+      | FETCH_BEERS(searchText) when shouldFetch(state.id) =>
         ReasonReact.UpdateWithSideEffects(
           {...state, id: LOADING},
           (self => fetchBeers(self, searchText) |> ignore)
         )
+      | FETCH_BEERS(_) => ReasonReact.NoUpdate
       | SET_BEERS(beers) => ReasonReact.Update({...state, id: SUCCESS, beers})
       },
     render: ({state, send}) => {
