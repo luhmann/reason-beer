@@ -4,6 +4,6 @@ let make = _children => {
   ...component,
   render: _self =>
     <h1 className="sm:text-5xl mb-6">
-      (ReasonReact.stringToElement("What's with dinner?"))
+      (ReasonReact.stringToElement({js|🍺|js} ++ " What's with dinner?"))
     </h1>
 };
