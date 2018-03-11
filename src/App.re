@@ -58,6 +58,7 @@ let make = _children => {
         | ERROR => <Error />
         };
       <main className="mx-auto p-4 font-sans leading-normal max-w-md">
+        <Title />
         <Search
           placeholderText="Enter a food you want to pair with a beer, eg. 'Burger'"
           onSubmit=(searchText => send(FETCH_BEERS(searchText)))
