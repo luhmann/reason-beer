@@ -1,4 +1,5 @@
 const path = require("path");
+const WebappWebpackPlugin = require("webapp-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -32,8 +33,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Reason Beer",
+      title: "What's with dinner?",
       template: path.join(__dirname, "config", "index.html")
-    })
+    }),
+    new WebappWebpackPlugin(path.resolve(__dirname, "config", "favicon.png"))
   ]
 };
