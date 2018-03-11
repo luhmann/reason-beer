@@ -43,7 +43,7 @@ let make = _children => {
           (self => fetchBeers(self, searchText) |> ignore)
         )
       | FETCH_BEERS(_) => ReasonReact.NoUpdate
-      | SET_BEERS(beers) => ReasonReact.Update({...state, id: SUCCESS, beers})
+      | SET_BEERS(beers) => ReasonReact.Update({id: SUCCESS, beers})
       },
     render: ({state, send}) => {
       let container =
