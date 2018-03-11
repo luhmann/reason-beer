@@ -29,11 +29,7 @@ let make = _children => {
   let fetchBeers = (self, searchTerm) =>
     Js.Promise.(
       Api.fetchBeersForFoodPairing(searchTerm)
-      |> then_(beers => {
-           self.ReasonReact.send(SET_BEERS(beers));
-           resolve(beers);
-         })
-      |> then_(beers => resolve(Js.log(beers)))
+      |> then_(beers => resolve(self.ReasonReact.send(SET_BEERS(beers))))
       |> catch(error => resolve(Js.log(error)))
     );
   {
