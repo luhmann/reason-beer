@@ -7,7 +7,14 @@ type action =
 
 let component = ReasonReact.reducerComponent("Search");
 
-let make = (~placeholderText: string, ~onSubmit: string => unit, _children) => {
+let make =
+    (
+      ~placeholderText: string,
+      ~initialValue: string,
+      ~disabled: bool,
+      ~onSubmit: string => unit,
+      _children
+    ) => {
   let handleSubmit = state =>
     switch (String.trim(state.searchText)) {
     | "" => ReasonReact.NoUpdate
@@ -16,11 +23,11 @@ let make = (~placeholderText: string, ~onSubmit: string => unit, _children) => {
     };
   {
     ...component,
-    initialState: () => {searchText: ""},
+    initialState: () => {searchText: initialValue},
     reducer: action =>
       switch action {
       | Change(searchText) => (
-          state => ReasonReact.Update({...state, searchText})
+          _state => ReasonReact.Update({searchText: searchText})
         )
       | Submit => handleSubmit
       | KeyDown(13) => handleSubmit
@@ -29,6 +36,7 @@ let make = (~placeholderText: string, ~onSubmit: string => unit, _children) => {
     render: ({state, send}) =>
       <input
         className="border mb-4 p-2 rounded text-grey-darkest appearance-none w-full max-w-md"
+        disabled=(Js.Boolean.to_js_boolean(disabled))
         _type="text"
         placeholder=placeholderText
         value=state.searchText

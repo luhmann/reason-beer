@@ -14,7 +14,8 @@ type foodPairingResponse = {
 
 type state = {
   id: appState,
-  beers: list(Beer.brew)
+  beers: list(Beer.brew),
+  searchTerm: option(string)
 };
 
 type action =
@@ -34,16 +35,16 @@ let make = _children => {
     );
   {
     ...component,
-    initialState: () => {id: NOT_ASKED, beers: []},
+    initialState: () => {id: NOT_ASKED, beers: [], searchTerm: None},
     reducer: (action, state) =>
       switch action {
       | FETCH_BEERS(searchText) when shouldFetch(state.id) =>
         ReasonReact.UpdateWithSideEffects(
-          {...state, id: LOADING},
+          {...state, id: LOADING, searchTerm: Some(searchText)},
           (self => fetchBeers(self, searchText) |> ignore)
         )
       | FETCH_BEERS(_) => ReasonReact.NoUpdate
-      | SET_BEERS(beers) => ReasonReact.Update({id: SUCCESS, beers})
+      | SET_BEERS(beers) => ReasonReact.Update({...state, id: SUCCESS, beers})
       },
     render: ({state, send}) => {
       let container =
@@ -56,6 +57,8 @@ let make = _children => {
       <main className="mx-auto p-4 font-sans leading-normal max-w-md">
         <Title />
         <Search
+          disabled=(state.id === LOADING)
+          initialValue=(Js.Option.getWithDefault("", state.searchTerm))
           placeholderText="Enter a food you want to pair with a beer, eg. 'Burger'"
           onSubmit=(searchText => send(FETCH_BEERS(searchText)))
         />
