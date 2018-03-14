@@ -14,6 +14,6 @@
   ],
   "suffix": ".bs.js",
   "namespace": true,
-  "bs-dependencies": ["reason-react", "bs-axios"],
+  "bs-dependencies": ["reason-react", "bs-axios", "re-classnames"],
   "refmt": 3
 }

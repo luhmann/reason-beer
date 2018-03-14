@@ -35,7 +35,19 @@ let make =
       },
     render: ({state, send}) =>
       <input
-        className="border mb-4 p-2 rounded text-grey-darkest appearance-none w-full max-w-md"
+        className=(
+          Cn.make([
+            "border",
+            "mb-4",
+            "p-2",
+            "rounded",
+            "text-grey-darkest",
+            "appearance-none",
+            "w-full",
+            "max-w-md",
+            "bg-grey-lighter" |> Cn.ifBool(disabled)
+          ])
+        )
         disabled=(Js.Boolean.to_js_boolean(disabled))
         _type="text"
         placeholder=placeholderText

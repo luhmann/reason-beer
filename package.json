@@ -9,14 +9,13 @@
     "webpack": "webpack -w",
     "dev": "webpack-serve --config ./webpack.config.js"
   },
-  "keywords": [
-    "BuckleScript"
-  ],
+  "keywords": ["BuckleScript"],
   "author": "",
   "license": "MIT",
   "dependencies": {
     "bs-axios": "^0.0.29",
     "murmurhash": "^0.0.2",
+    "re-classnames": "^0.0.3",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "reason-react": ">=0.3.0"
