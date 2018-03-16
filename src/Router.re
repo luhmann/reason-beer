@@ -22,10 +22,7 @@ let make = (children: children) => {
   reducer: (action, _state) =>
     switch action {
     | SET_SEARCH_TERM(searchTerm) =>
-      ReasonReact.UpdateWithSideEffects(
-        {searchTerm: Some(searchTerm)},
-        (self => Js.log2(searchTerm, self.state))
-      )
+      ReasonReact.Update({searchTerm: Some(searchTerm)})
     | CLEAR_SEARCH_TERM => ReasonReact.Update({searchTerm: None})
     },
   subscriptions: self => [

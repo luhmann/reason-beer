@@ -1,6 +1,13 @@
 [%bs.raw {|require('./css/main.css')|}];
 
 ReactDOMRe.renderToElementWithId(
-  <Router> ...((~searchTerm) => <App searchTerm />) </Router>,
+  <Router>
+    ...(
+         (~searchTerm) =>
+           <FetchBeers searchTerm>
+             ...((~beerFetcher) => <App beerFetcher />)
+           </FetchBeers>
+       )
+  </Router>,
   "app"
 );
