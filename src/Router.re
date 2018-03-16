@@ -12,7 +12,7 @@ let getInitialUrl = () => {
   let searchTerm = ReasonReact.Router.dangerouslyGetInitialUrl().hash;
   switch searchTerm {
   | "" => None
-  | term => Some(term)
+  | term => Some(Js.Global.decodeURIComponent(term))
   };
 };
 
@@ -22,7 +22,9 @@ let make = (children: children) => {
   reducer: (action, _state) =>
     switch action {
     | SET_SEARCH_TERM(searchTerm) =>
-      ReasonReact.Update({searchTerm: Some(searchTerm)})
+      ReasonReact.Update({
+        searchTerm: Some(Js.Global.decodeURIComponent(searchTerm))
+      })
     | CLEAR_SEARCH_TERM => ReasonReact.Update({searchTerm: None})
     },
   subscriptions: self => [
