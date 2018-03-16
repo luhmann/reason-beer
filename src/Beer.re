@@ -27,13 +27,13 @@ let make = (~name, ~description, ~foodPairing, ~image=?, _children) => {
         <h2 className="font-black mb-3 tracking-wide">
           (ReasonReact.stringToElement(name))
         </h2>
-        <p className="text-sm text-gray-dark mb-4">
+        <p className="text-sm text-gray-darkest mb-4">
           (ReasonReact.stringToElement(description))
         </p>
         <h3 className="mb-1">
           (ReasonReact.stringToElement("Food Pairings"))
         </h3>
-        <ul className="text-sm text-gray-dark list-reset sm:leading-loose">
+        <ul className="text-sm text-gray-darkest list-reset sm:leading-loose">
           (
             ReasonReact.arrayToElement(
               foodPairing
