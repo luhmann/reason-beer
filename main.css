@@ -605,6 +605,10 @@ input::placeholder {
   overflow: hidden;
 }
 
+.p-1 {
+  padding: .25rem;
+}
+
 .p-2 {
   padding: .5rem;
 }
