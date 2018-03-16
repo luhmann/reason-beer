@@ -7,12 +7,12 @@ A simple App giving you recommendation of what tasty brews go with your food. Us
 
 ## Try it out
 
-[Insert Link here]
+https://build-ntuwkhkmgo.now.sh/
 
 ## Installation
 
-*   Requires node > 9
-*   Install the required global binaries as described here: https://reasonml.github.io/docs/en/global-installation.html
+*   Requires `node` > 9
+*   Install the `reason-cli` binaries as described here: https://reasonml.github.io/docs/en/global-installation.html
 *   Install dependencies: `$ yarn`
 
 ## Development
