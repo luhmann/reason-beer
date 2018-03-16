@@ -7,7 +7,7 @@ A simple App giving you recommendation of what tasty brews go with your food. Us
 
 ## Try it out
 
-https://build-ntuwkhkmgo.now.sh/
+https://luhmann.github.io/reason-beer/
 
 ## Installation
 
