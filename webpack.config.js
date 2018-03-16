@@ -74,7 +74,7 @@ module.exports = (env, argv) => ({
     new HtmlWebpackPlugin({
       title: "What's with dinner?",
       template: path.join(__dirname, "config", "index.html"),
-      inject: true
+      inject: false
     }),
     new WebappWebpackPlugin(path.resolve(__dirname, "config", "favicon.png"))
   ]
