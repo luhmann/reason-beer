@@ -3,6 +3,8 @@
 <h1 align="center">What's with dinner?</h1>
 </p>
 
+[![Build Status](https://travis-ci.org/luhmann/reason-beer.svg?branch=master)](https://travis-ci.org/luhmann/reason-beer)
+
 A simple App giving you recommendation of what tasty brews go with your food. Uses [ReasonML](https://reasonml.github.io/), [Reason React](https://reasonml.github.io/reason-react/) and [Tailwind](https://tailwindcss.com/). Powered by [Punk Api](https://punkapi.com/).
 
 ## Try it out
