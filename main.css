@@ -23,12 +23,22 @@
  *    IE on Windows Phone and in iOS.
  */
 
+html {
+  line-height: 1.15; /* 1 */
+      -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
 /* Sections
    ========================================================================== */
 
 /**
  * Remove the margin in all browsers (opinionated).
  */
+
+body {
+  margin: 0;
+}
 
 /**
  * Add the correct display in IE 9-.
@@ -183,6 +193,7 @@ input {
  */
 
 
+html [type="button"],
 
 [type="reset"],
 [type="submit"] {
@@ -326,6 +337,11 @@ input {
  * https://goo.gl/pYtbK7
  * 2. Change the default font family in all browsers (opinionated)
  */
+
+html {
+  box-sizing: border-box; /* 1 */
+  font-family: sans-serif; /* 2 */
+}
 
 *,
 *::before,
