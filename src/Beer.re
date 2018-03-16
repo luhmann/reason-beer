@@ -16,14 +16,8 @@ let make = (~name, ~description, ~foodPairing, ~image=?, _children) => {
       | None => ReasonReact.nullElement
       | Some(i_) =>
         <div
-          className="bg-contain bg-center flex-grow bg-no-repeat h-48 sm:h-auto"
-          style=(
-            ReactDOMRe.Style.make(
-              ~backgroundImage={j|url($i_)|j},
-              ~minWidth="8rem",
-              ()
-            )
-          )
+          className="bg-contain bg-center flex-grow bg-no-repeat h-48 sm:h-auto beerImg-width"
+          style=(ReactDOMRe.Style.make(~backgroundImage={j|url($i_)|j}, ()))
         />
       };
     <div

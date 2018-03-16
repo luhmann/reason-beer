@@ -55,3 +55,7 @@
   * @import "utilities/background-patterns";
   * @import "utilities/skew-transforms";
   */
+
+.beerImg-width {
+  min-width: 8rem;
+}
