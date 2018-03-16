@@ -58,14 +58,17 @@ module.exports = (env, argv) => ({
             chunkFilename: "[id].css"
           }),
           new PurgecssPlugin({
-            paths: glob.sync(`${PATHS.src}/**/*.js`),
+            paths: [
+              ...glob.sync(`${PATHS.src}/**/*.js`),
+              path.join(__dirname, "config", "index.html")
+            ],
             extractors: [
               {
                 extractor: TailwindExtractor,
 
                 // Specify the file extensions to include when scanning for
                 // class names.
-                extensions: ["js"]
+                extensions: ["js", "html"]
               }
             ]
           })
