@@ -8,7 +8,9 @@ let make = (~beerFetcher: FetchBeers.beerFetcher, _children) => {
       | NOT_ASKED => <IntroText />
       | LOADING => <Loading />
       | SUCCESS => <BeerListContainer beers=beerFetcher.beers />
-      | ERROR => <Error />
+      | ERROR =>
+        Utils.logError(List.nth(beerFetcher.errors, 0));
+        <Error />;
       };
     <main className="mx-auto p-4 font-sans leading-normal max-w-md">
       <Title />

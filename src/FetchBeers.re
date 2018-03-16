@@ -7,18 +7,21 @@ type fetchState =
 type beerFetcher = {
   status: fetchState,
   beers: list(Beer.brew),
-  searchTerm: option(string)
+  searchTerm: option(string),
+  errors: list(option(exn))
 };
 
 type state = {
   id: fetchState,
   beers: list(Beer.brew),
-  searchTerm: option(string)
+  searchTerm: option(string),
+  errors: list(option(exn))
 };
 
 type action =
   | FETCH_BEERS(string)
   | SET_BEERS(list(Beer.brew))
+  | SET_ERROR(option(exn))
   | CLEAR_BEERS;
 
 let component = ReasonReact.reducerComponentWithRetainedProps("FetchBeers");
@@ -27,7 +30,9 @@ let fetchBeers = (self, searchTerm) =>
   Js.Promise.(
     Api.fetchBeersForFoodPairing(searchTerm)
     |> then_(beers => resolve(self.ReasonReact.send(SET_BEERS(beers))))
-    |> catch(error => resolve(Js.log(error)))
+    |> catch(error =>
+         resolve(self.ReasonReact.send(SET_ERROR(Utils.jsErrorToExn(error))))
+       )
   );
 
 let createSearchBeerAction = (state, searchTerm) =>
@@ -52,7 +57,7 @@ let make = (~searchTerm: option(string), children) => {
       | Some(searchTerm) => newSelf.send(FETCH_BEERS(searchTerm))
       };
     },
-  initialState: () => {id: NOT_ASKED, beers: [], searchTerm: None},
+  initialState: () => {id: NOT_ASKED, beers: [], searchTerm: None, errors: []},
   retainedProps: searchTerm,
   reducer: (action, state) =>
     switch action {
@@ -61,13 +66,16 @@ let make = (~searchTerm: option(string), children) => {
     | FETCH_BEERS(_) => ReasonReact.NoUpdate
     | SET_BEERS(beers) => ReasonReact.Update({...state, id: SUCCESS, beers})
     | CLEAR_BEERS => ReasonReact.Update({...state, beers: []})
+    | SET_ERROR(errors) =>
+      ReasonReact.Update({...state, id: ERROR, errors: [errors]})
     },
   render: ({state}) =>
     children(
       ~beerFetcher={
         beers: state.beers,
         status: state.id,
-        searchTerm: state.searchTerm
+        searchTerm: state.searchTerm,
+        errors: state.errors
       }
     )
 };
