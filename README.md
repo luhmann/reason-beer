@@ -11,13 +11,22 @@ https://luhmann.github.io/reason-beer/
 
 ## Installation
 
-*   Requires `node` > 9
+*   Requires `node` > v9
+*   Requires `yarn` > 1.3
 *   Install the `reason-cli` binaries as described here: https://reasonml.github.io/docs/en/global-installation.html
-*   Install dependencies: `$ yarn`
+
+Install project dependencies:
+
+```
+yarn
+```
 
 ## Development
 
-`yarn start`
+```
+$ yarn start
+$ yarn dev (in another tab)
+```
 
 This starts the bucklescript compiler and a webpack-server in parallel
 
