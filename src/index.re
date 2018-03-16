@@ -1,3 +1,6 @@
 [%bs.raw {|require('./css/main.css')|}];
 
-ReactDOMRe.renderToElementWithId(<App />, "app");
+ReactDOMRe.renderToElementWithId(
+  <Router> ...((~searchTerm) => <App searchTerm />) </Router>,
+  "app"
+);

@@ -26,27 +26,34 @@ let component = ReasonReact.reducerComponent("App");
 
 let shouldFetch = stateId => stateId !== LOADING;
 
-let make = _children => {
+let make = (~searchTerm: option(string), _children) => {
   let fetchBeers = (self, searchTerm) =>
     Js.Promise.(
       Api.fetchBeersForFoodPairing(searchTerm)
       |> then_(beers => resolve(self.ReasonReact.send(SET_BEERS(beers))))
       |> catch(error => resolve(Js.log(error)))
     );
+  let createSearchBeerAction = (state, searchTerm) =>
+    ReasonReact.UpdateWithSideEffects(
+      {...state, id: LOADING, searchTerm: Some(searchTerm)},
+      self => fetchBeers(self, searchTerm) |> ignore
+    );
   {
     ...component,
-    initialState: () => {id: NOT_ASKED, beers: [], searchTerm: None},
+    initialState: () => {id: NOT_ASKED, beers: [], searchTerm},
+    didMount: ({state}) =>
+      switch state.searchTerm {
+      | None => ReasonReact.NoUpdate
+      | Some(searchTerm) => createSearchBeerAction(state, searchTerm)
+      },
     reducer: (action, state) =>
       switch action {
-      | FETCH_BEERS(searchText) when shouldFetch(state.id) =>
-        ReasonReact.UpdateWithSideEffects(
-          {...state, id: LOADING, searchTerm: Some(searchText)},
-          (self => fetchBeers(self, searchText) |> ignore)
-        )
+      | FETCH_BEERS(searchTerm) when shouldFetch(state.id) =>
+        createSearchBeerAction(state, searchTerm)
       | FETCH_BEERS(_) => ReasonReact.NoUpdate
       | SET_BEERS(beers) => ReasonReact.Update({...state, id: SUCCESS, beers})
       },
-    render: ({state, send}) => {
+    render: ({state}) => {
       let container =
         switch state.id {
         | NOT_ASKED => <IntroText />
@@ -58,9 +65,9 @@ let make = _children => {
         <Title />
         <Search
           disabled=(state.id === LOADING)
-          initialValue=(Js.Option.getWithDefault("", state.searchTerm))
+          initialValue=(Js.Option.getWithDefault("", searchTerm))
           placeholderText="Enter a food you want to pair with a beer, eg. 'Burger'"
-          onSubmit=(searchText => send(FETCH_BEERS(searchText)))
+          onSubmit=(searchText => ReasonReact.Router.push({j|/#$searchText|j}))
         />
         container
       </main>;

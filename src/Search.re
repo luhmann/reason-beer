@@ -5,7 +5,7 @@ type action =
   | KeyDown(int)
   | Change(string);
 
-let component = ReasonReact.reducerComponent("Search");
+let component = ReasonReact.reducerComponentWithRetainedProps("Search");
 
 let make =
     (
@@ -24,6 +24,13 @@ let make =
   {
     ...component,
     initialState: () => {searchText: initialValue},
+    retainedProps: initialValue,
+    willReceiveProps: ({state, retainedProps}) =>
+      if (retainedProps !== initialValue) {
+        {searchText: initialValue};
+      } else {
+        state;
+      },
     reducer: action =>
       switch action {
       | Change(searchText) => (
