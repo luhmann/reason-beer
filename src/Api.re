@@ -1,4 +1,4 @@
-let getFoodParingUrl = searchTerm : string => {j|https://api.punkapi.com/v2/beers?food=$searchTerm|j};
+let getFoodParingUrl = searchTerm : string => {j|https://api.punkapi.com/v2/beers?food=$searchTerm&per_page=80|j};
 
 let mapBeerResponse = beerResponse =>
   Array.to_list(
