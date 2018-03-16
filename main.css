@@ -613,6 +613,10 @@ input::placeholder {
   text-align: center;
 }
 
+.text-black {
+  color: #22292f;
+}
+
 .text-grey-darkest {
   color: #3d4852;
 }
