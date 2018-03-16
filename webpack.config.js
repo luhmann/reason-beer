@@ -1,12 +1,26 @@
 const path = require("path");
+const glob = require("glob");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WebappWebpackPlugin = require("webapp-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const PurgecssPlugin = require("purgecss-webpack-plugin");
 
-module.exports = {
-  entry: "./src/index.bs.js",
+const PATHS = {
+  src: path.join(__dirname, "src"),
+  build: path.join(__dirname, "build")
+};
+
+class TailwindExtractor {
+  static extract(content) {
+    return content.match(/[A-z0-9-:\/]+/g) || [];
+  }
+}
+
+module.exports = (env, argv) => ({
+  entry: path.join(PATHS.src, "index.bs.js"),
   mode: "development",
   output: {
-    path: path.join(__dirname, "build"),
+    path: PATHS.build,
     filename: "index.js"
   },
   module: {
@@ -16,7 +30,10 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "style-loader"
+            loader:
+              argv && argv.mode === "production"
+                ? MiniCssExtractPlugin.loader
+                : "style-loader"
           },
           {
             loader: "css-loader",
@@ -32,10 +49,33 @@ module.exports = {
     ]
   },
   plugins: [
+    ...(argv && argv.mode === "production"
+      ? [
+          new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: "[name].css",
+            chunkFilename: "[id].css"
+          }),
+          new PurgecssPlugin({
+            paths: glob.sync(`${PATHS.src}/**/*.js`),
+            extractors: [
+              {
+                extractor: TailwindExtractor,
+
+                // Specify the file extensions to include when scanning for
+                // class names.
+                extensions: ["js"]
+              }
+            ]
+          })
+        ]
+      : []),
     new HtmlWebpackPlugin({
       title: "What's with dinner?",
-      template: path.join(__dirname, "config", "index.html")
+      template: path.join(__dirname, "config", "index.html"),
+      inject: true
     }),
     new WebappWebpackPlugin(path.resolve(__dirname, "config", "favicon.png"))
   ]
-};
+});
