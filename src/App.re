@@ -18,7 +18,10 @@ let make = (~beerFetcher: FetchBeers.beerFetcher, _children) => {
         disabled=(beerFetcher.status === LOADING)
         initialValue=(Js.Option.getWithDefault("", beerFetcher.searchTerm))
         placeholderText="Enter a food you want to pair with a beer, eg. 'Burger'"
-        onSubmit=(searchText => ReasonReact.Router.push({j|/#$searchText|j}))
+        onSubmit=(searchText => {
+          let basePath = Utils.basePath;
+          ReasonReact.Router.push({j|$basePath#$searchText|j});
+        })
       />
       container
     </main>;

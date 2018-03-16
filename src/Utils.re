@@ -44,3 +44,6 @@ let logError = err => {
   | _ => Js.log("Unidentified Error")
   };
 };
+
+[@bs.scope ("window", "location")] [@bs.val]
+external basePath : string = "pathname";
