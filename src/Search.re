@@ -52,7 +52,7 @@ let make =
             "appearance-none",
             "w-full",
             "max-w-md",
-            "bg-grey-lighter" |> Cn.ifBool(disabled)
+            "bg-grey-lightest" |> Cn.ifBool(disabled)
           ])
         )
         disabled=(Js.Boolean.to_js_boolean(disabled))
