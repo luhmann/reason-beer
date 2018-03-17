@@ -3,8 +3,15 @@ let component = ReasonReact.statelessComponent("BeerListContainer");
 let renderBeers = beers =>
   beers
   |> List.map(beer => {
-       let {id, name, description, image, foodPairing}: Beer.brew = beer;
-       <Beer key=(string_of_int(id)) name description image foodPairing />;
+       let {id, name, tagline, description, image, foodPairing}: Beer.brew = beer;
+       <Beer
+         key=(string_of_int(id))
+         name
+         tagline
+         description
+         image
+         foodPairing
+       />;
      });
 
 let make = (~beers: list(Beer.brew), _children) => {
