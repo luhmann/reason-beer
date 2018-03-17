@@ -52,7 +52,8 @@ let make =
             "appearance-none",
             "w-full",
             "max-w-md",
-            "bg-grey-lightest" |> Cn.ifBool(disabled)
+            "bg-grey-lightest" |> Cn.ifBool(disabled),
+            "test-search-box"
           ])
         )
         disabled=(Js.Boolean.to_js_boolean(disabled))

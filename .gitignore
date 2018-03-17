@@ -7,3 +7,5 @@ npm-debug.log
 *.bs.js
 build
 yarn-error.log
+cypress/screenshots
+cypress/videos

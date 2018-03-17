@@ -34,7 +34,7 @@ let make =
         />
       };
     <div
-      className="shadow-lg rounded mb-4 overflow-hidden max-w-md p-3 sm:flex">
+      className="shadow-lg rounded mb-4 overflow-hidden max-w-md p-3 sm:flex test-beer-card">
       imageItem
       <div className="p-4">
         <h2 className="font-black tracking-wide leading-tight">
