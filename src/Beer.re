@@ -6,10 +6,22 @@ type brew = {
   tagline: string,
   image: string,
   description: string,
+  abv: float,
+  ibu: int,
   foodPairing: array(string)
 };
 
-let make = (~name, ~tagline, ~description, ~foodPairing, ~image=?, _children) => {
+let make =
+    (
+      ~name,
+      ~tagline,
+      ~description,
+      ~abv,
+      ~ibu,
+      ~foodPairing,
+      ~image=?,
+      _children
+    ) => {
   ...component,
   render: _self => {
     let imageItem =
@@ -31,9 +43,21 @@ let make = (~name, ~tagline, ~description, ~foodPairing, ~image=?, _children) =>
         <div className="mb-3 text-grey-darker italic">
           (ReasonReact.stringToElement(tagline))
         </div>
-        <p className="text-sm mb-4">
+        <p className="text-sm mb-3">
           (ReasonReact.stringToElement(description))
         </p>
+        <div className="mb-6">
+          <span
+            className="bg-blue-lighter text-blue-dark text-xs font-bold py-1 px-2 rounded-full mr-1">
+            (
+              ReasonReact.stringToElement("ABV " ++ string_of_float(abv) ++ "%")
+            )
+          </span>
+          <span
+            className="bg-blue-lighter text-blue-dark text-xs font-bold py-1 px-2 rounded-full">
+            (ReasonReact.stringToElement("IBU " ++ string_of_int(ibu)))
+          </span>
+        </div>
         <h3 className="mb-1">
           (ReasonReact.stringToElement("Food Pairings"))
         </h3>

@@ -9,6 +9,8 @@ let mapBeerResponse = beerResponse : list(Beer.brew) =>
           name: beer##name,
           tagline: beer##tagline,
           description: beer##description,
+          abv: beer##abv,
+          ibu: beer##ibu,
           image: beer##image_url,
           foodPairing: beer##food_pairing
         };
