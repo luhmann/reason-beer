@@ -79,6 +79,19 @@ module.exports = (env, argv) => ({
       template: path.join(__dirname, "config", "index.html"),
       inject: false
     }),
-    new WebappWebpackPlugin(path.resolve(__dirname, "config", "favicon.png"))
+    new WebappWebpackPlugin({
+      logo: path.resolve(__dirname, "config", "favicon.png"),
+      favicons: {
+        icons: {
+          android: false,
+          appleIcon: false,
+          coast: false,
+          firefox: false,
+          yandex: false,
+          windows: false,
+          appleStartup: false
+        }
+      }
+    })
   ]
 });
