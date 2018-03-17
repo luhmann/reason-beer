@@ -536,6 +536,10 @@ input::placeholder {
   background-color: #621b18;
 }
 
+.bg-blue-lighter {
+  background-color: #bcdefa;
+}
+
 .bg-center {
   background-position: center;
 }
@@ -552,6 +556,10 @@ input::placeholder {
   border-radius: .25rem;
 }
 
+.rounded-full {
+  border-radius: 9999px;
+}
+
 .border {
   border-width: 1px;
 }
@@ -564,12 +572,20 @@ input::placeholder {
   font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+.font-bold {
+  font-weight: 700;
+}
+
 .font-black {
   font-weight: 900;
 }
 
 .h-48 {
   height: 12rem;
+}
+
+.leading-tight {
+  line-height: 1.25;
 }
 
 .leading-normal {
@@ -579,6 +595,10 @@ input::placeholder {
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.mr-1 {
+  margin-right: .25rem;
 }
 
 .mb-1 {
@@ -625,6 +645,16 @@ input::placeholder {
   padding: 1.5rem;
 }
 
+.py-1 {
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+}
+
+.px-2 {
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
 .shadow-lg {
   box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .11), 0 5px 15px 0 rgba(0, 0, 0, .08);
 }
@@ -641,16 +671,32 @@ input::placeholder {
   color: #3d4852;
 }
 
+.text-grey-darker {
+  color: #606f7b;
+}
+
 .text-white {
   color: #fff;
+}
+
+.text-blue-dark {
+  color: #2779bd;
 }
 
 .text-blue-light {
   color: #6cb2eb;
 }
 
+.text-xs {
+  font-size: .75rem;
+}
+
 .text-sm {
   font-size: .875rem;
+}
+
+.italic {
+  font-style: italic;
 }
 
 .no-underline {
