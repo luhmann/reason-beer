@@ -564,10 +564,6 @@ input::placeholder {
   border-width: 1px;
 }
 
-.flex-grow {
-  flex-grow: 1;
-}
-
 .font-sans {
   font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
