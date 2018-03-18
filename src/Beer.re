@@ -8,6 +8,7 @@ type brew = {
   description: string,
   abv: float,
   ibu: int,
+  ebc: int,
   foodPairing: array(string)
 };
 
@@ -18,6 +19,7 @@ let make =
       ~description,
       ~abv,
       ~ibu,
+      ~ebc,
       ~foodPairing,
       ~image=?,
       _children
@@ -48,16 +50,16 @@ let make =
           (ReasonReact.stringToElement(description))
         </p>
         <div className="mb-6 test-beer-card-tags">
-          <span
-            className="bg-blue-lighter text-blue-dark text-xs font-bold py-1 px-2 rounded-full mr-1">
-            (
-              ReasonReact.stringToElement("ABV " ++ string_of_float(abv) ++ "%")
-            )
-          </span>
-          <span
-            className="bg-blue-lighter text-blue-dark text-xs font-bold py-1 px-2 rounded-full">
-            (ReasonReact.stringToElement("IBU " ++ string_of_int(ibu)))
-          </span>
+          <Tag>
+            ...(
+                 ReasonReact.stringToElement(
+                   "ABV " ++ string_of_float(abv) ++ "%"
+                 )
+               )
+          </Tag>
+          <Tag>
+            ...(ReasonReact.stringToElement("IBU " ++ string_of_int(ibu)))
+          </Tag>
         </div>
         <h3 className="mb-1">
           (ReasonReact.stringToElement("Food Pairings"))

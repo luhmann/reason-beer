@@ -1,7 +1,7 @@
 ## Write more components
 
 *   [x] Links
-*   [ ] Tags (ABV, IBU, etc)
+*   [x] Tags (ABV, IBU, etc)
 *   [ ] Paragraphs
 
 ## Images
