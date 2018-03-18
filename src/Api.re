@@ -11,6 +11,7 @@ let mapBeerResponse = beerResponse : list(Beer.brew) =>
           description: beer##description,
           abv: beer##abv,
           ibu: beer##ibu,
+          ebc: beer##ebc,
           image: beer##image_url,
           foodPairing: beer##food_pairing
         };

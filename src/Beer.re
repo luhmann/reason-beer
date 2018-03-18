@@ -60,6 +60,9 @@ let make =
           <Tag>
             ...(ReasonReact.stringToElement("IBU " ++ string_of_int(ibu)))
           </Tag>
+          <Tag>
+            ...(ReasonReact.stringToElement("EBC " ++ string_of_int(ebc)))
+          </Tag>
         </div>
         <h3 className="mb-1">
           (ReasonReact.stringToElement("Food Pairings"))

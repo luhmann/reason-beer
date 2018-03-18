@@ -127,7 +127,8 @@ describe('Searching for beers', () => {
               .first()
               .find(sel('beer-card-tags'))
               .should('contain', 'ABV 6.1%')
-              .and('contain', 'IBU 45');
+              .and('contain', 'IBU 45')
+              .and('contain', 'EBC 219');
 
             cy
               .get(sel('beer-card'))
