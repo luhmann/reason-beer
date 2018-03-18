@@ -540,8 +540,8 @@ input::placeholder {
   background-color: #bcdefa;
 }
 
-.bg-center {
-  background-position: center;
+.bg-top {
+  background-position: top;
 }
 
 .bg-no-repeat {
@@ -655,6 +655,22 @@ input::placeholder {
   padding-right: .5rem;
 }
 
+.pt-4 {
+  padding-top: 1rem;
+}
+
+.pr-4 {
+  padding-right: 1rem;
+}
+
+.pb-4 {
+  padding-bottom: 1rem;
+}
+
+.pl-4 {
+  padding-left: 1rem;
+}
+
 .shadow-lg {
   box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .11), 0 5px 15px 0 rgba(0, 0, 0, .08);
 }
@@ -727,7 +743,7 @@ input::placeholder {
   */
 
 .beerImg-width {
-  min-width: 8rem;
+  min-width: 10rem;
 }
 
 .spinner {
@@ -794,6 +810,10 @@ input::placeholder {
 
   .sm\:leading-loose {
     line-height: 2;
+  }
+
+  .sm\:pt-0 {
+    padding-top: 0;
   }
 
   .sm\:text-5xl {
