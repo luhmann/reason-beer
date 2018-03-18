@@ -34,19 +34,20 @@ let make =
         />
       };
     <div
-      className="shadow-lg rounded mb-4 overflow-hidden max-w-md p-3 sm:flex">
+      className="shadow-lg rounded mb-4 overflow-hidden max-w-md p-3 sm:flex test-beer-card">
       imageItem
       <div className="p-4">
-        <h2 className="font-black tracking-wide leading-tight">
+        <h2
+          className="font-black tracking-wide leading-tight test-beer-card-name">
           (ReasonReact.stringToElement(name))
         </h2>
-        <div className="mb-3 text-grey-darker italic">
+        <div className="mb-3 text-grey-darker italic test-beer-card-tagline">
           (ReasonReact.stringToElement(tagline))
         </div>
-        <p className="text-sm mb-3">
+        <p className="text-sm mb-3 test-beer-card-description">
           (ReasonReact.stringToElement(description))
         </p>
-        <div className="mb-6">
+        <div className="mb-6 test-beer-card-tags">
           <span
             className="bg-blue-lighter text-blue-dark text-xs font-bold py-1 px-2 rounded-full mr-1">
             (
@@ -66,7 +67,9 @@ let make =
             ReasonReact.arrayToElement(
               foodPairing
               |> Array.map(pairing =>
-                   <li key=(Utils.keyHasher(pairing))>
+                   <li
+                     key=(Utils.keyHasher(pairing))
+                     className="test-beer-card-food-pairing">
                      (ReasonReact.stringToElement(pairing))
                    </li>
                  )

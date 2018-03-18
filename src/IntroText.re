@@ -3,7 +3,7 @@ let component = ReasonReact.statelessComponent("IntroText");
 let make = _children => {
   ...component,
   render: _self =>
-    <section className="text-grey-darkest p-1">
+    <section className="text-grey-darkest p-1 test-intro-text">
       <p className="mb-6">
         (
           ReasonReact.stringToElement(
