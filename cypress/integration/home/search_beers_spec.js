@@ -104,6 +104,11 @@ describe('Searching for beers', () => {
             cy
               .get(sel('beer-card'))
               .first()
+              .find(sel('beer-card-img'));
+
+            cy
+              .get(sel('beer-card'))
+              .first()
               .find(sel('beer-card-name'))
               .should('contain', 'Libertine Porter');
 

@@ -31,7 +31,7 @@ let make =
       | None => ReasonReact.nullElement
       | Some(img_url) =>
         <div
-          className="bg-contain bg-top bg-no-repeat h-48 sm:h-auto beerImg-width"
+          className="bg-contain bg-top bg-no-repeat h-48 sm:h-auto beerImg-width test-beer-card-img"
           style=(
             ReactDOMRe.Style.make(~backgroundImage={j|url($img_url)|j}, ())
           )
