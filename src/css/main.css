@@ -57,7 +57,7 @@
   */
 
 .beerImg-width {
-  min-width: 8rem;
+  min-width: 10rem;
 }
 
 .spinner {
@@ -69,7 +69,7 @@
 .spinner > div {
   width: 18px;
   height: 18px;
-  background-color: config("colors.grey");
+  background-color: config('colors.grey');
 
   border-radius: 100%;
   display: inline-block;

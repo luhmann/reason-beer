@@ -29,14 +29,14 @@ let make =
       | None => ReasonReact.nullElement
       | Some(i_) =>
         <div
-          className="bg-contain bg-center flex-grow bg-no-repeat h-48 sm:h-auto beerImg-width"
+          className="bg-contain bg-top flex-grow bg-no-repeat h-48 sm:h-auto beerImg-width"
           style=(ReactDOMRe.Style.make(~backgroundImage={j|url($i_)|j}, ()))
         />
       };
     <div
       className="shadow-lg rounded mb-4 overflow-hidden max-w-md p-3 sm:flex test-beer-card">
       imageItem
-      <div className="p-4">
+      <div className="pb-4 pr-4 pl-4 pt-4 sm:pt-0">
         <h2
           className="font-black tracking-wide leading-tight test-beer-card-name">
           (ReasonReact.stringToElement(name))
