@@ -27,14 +27,21 @@ let make =
     let imageItem =
       switch image {
       | None => ReasonReact.nullElement
-      | Some(i_) =>
-        <div
-          className="bg-contain bg-top flex-grow bg-no-repeat h-48 sm:h-auto beerImg-width"
-          style=(ReactDOMRe.Style.make(~backgroundImage={j|url($i_)|j}, ()))
-        />
+      | Some(url) =>
+        /* <div
+             className="bg-contain bg-top flex-grow bg-no-repeat h-48 sm:h-auto beerImg-width"
+             style=(ReactDOMRe.Style.make(~backgroundImage={j|url($i_)|j}, ()))
+           />
+            */
+        <div className="h-48 sm:h-auto beerImg-width overflow-hidden">
+          <img
+            className="object-contain object-top sm:max-h-full sm:max-w-full"
+            src=url
+          />
+        </div>
       };
     <div
-      className="shadow-lg rounded mb-4 overflow-hidden max-w-md p-3 sm:flex test-beer-card">
+      className="shadow-lg rounded mb-4 overflow-hidden max-w-md p-3 sm:flex items-stretch test-beer-card">
       imageItem
       <div className="pb-4 pr-4 pl-4 pt-4 sm:pt-0">
         <h2
