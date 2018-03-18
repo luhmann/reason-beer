@@ -29,10 +29,12 @@ let make =
     let imageItem =
       switch image {
       | None => ReasonReact.nullElement
-      | Some(i_) =>
+      | Some(img_url) =>
         <div
-          className="bg-contain bg-top flex-grow bg-no-repeat h-48 sm:h-auto beerImg-width"
-          style=(ReactDOMRe.Style.make(~backgroundImage={j|url($i_)|j}, ()))
+          className="bg-contain bg-top bg-no-repeat h-48 sm:h-auto beerImg-width"
+          style=(
+            ReactDOMRe.Style.make(~backgroundImage={j|url($img_url)|j}, ())
+          )
         />
       };
     <div
