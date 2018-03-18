@@ -35,3 +35,9 @@ This starts the bucklescript compiler and a webpack-server in parallel
 ## Building
 
 `yarn build`
+
+## Testing
+
+Make sure you have executed the steps under development, then in yet another tab
+
+`yarn test`
