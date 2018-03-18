@@ -9,8 +9,7 @@
     "test": "cypress run",
     "dev": "webpack-serve --mode development",
     "host": "hs build -p 8080",
-    "ci":
-      "DEBUG=start-server-and-test start-server-and-test host http://localhost:8080 test"
+    "ci": "start-server-and-test host http://localhost:8080 test"
   },
   "keywords": ["BuckleScript"],
   "author": "",
