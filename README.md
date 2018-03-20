@@ -35,7 +35,7 @@ This starts the bucklescript compiler and a webpack-server in parallel
 ## Building
 
 ```
-$ yarn build`
+$ yarn build
 ```
 
 ## Testing
