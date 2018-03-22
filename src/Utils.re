@@ -47,3 +47,15 @@ let logError = err => {
 
 [@bs.scope ("window", "location")] [@bs.val]
 external basePath : string = "pathname";
+
+let getFilename = url =>
+  Js.String.split("/", url)
+  |> Js.Array.pop
+  |> Js.Option.getWithDefault("")
+  |> Js.String.split(".")
+  |> Js.Array.shift;
+
+let generateImgUrl = filename =>
+  "https://s3.eu-central-1.amazonaws.com/punk-api-images/resized/"
+  ++ filename
+  ++ ".jpg";

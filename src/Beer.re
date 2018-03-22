@@ -30,12 +30,14 @@ let make =
       switch image {
       | None => ReasonReact.nullElement
       | Some(img_url) =>
+        let url =
+          Utils.getFilename(img_url)
+          |> Js.Option.getWithDefault(img_url)
+          |> Utils.generateImgUrl;
         <div
           className="bg-contain bg-top bg-no-repeat h-48 sm:h-auto beerImg-width test-beer-card-img"
-          style=(
-            ReactDOMRe.Style.make(~backgroundImage={j|url($img_url)|j}, ())
-          )
-        />
+          style=(ReactDOMRe.Style.make(~backgroundImage={j|url($url)|j}, ()))
+        />;
       };
     <div
       className="shadow-lg rounded mb-4 overflow-hidden max-w-md p-3 sm:flex test-beer-card">
