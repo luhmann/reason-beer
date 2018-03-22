@@ -5,7 +5,13 @@
 {
   "name": "react-template",
   "reason": { "react-jsx": 2 },
-  "sources": ["src"],
+  "sources": [
+    "src",
+    {
+      "dir": "__tests__",
+      "type": "dev"
+    }
+  ],
   "package-specs": [
     {
       "module": "commonjs",
@@ -15,5 +21,6 @@
   "suffix": ".bs.js",
   "namespace": true,
   "bs-dependencies": ["reason-react", "bs-axios", "re-classnames"],
+  "bs-dev-dependencies": ["@glennsl/bs-jest"],
   "refmt": 3
 }
