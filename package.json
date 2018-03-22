@@ -7,9 +7,11 @@
     "start": "bsb -make-world -w",
     "clean": "bsb -clean-world",
     "test": "cypress run",
+    "test:unit": "jest",
     "dev": "webpack-serve --mode development",
     "host": "hs build -p 8080 --silent",
-    "ci": "start-server-and-test host http://localhost:8080 test"
+    "ci":
+      "yarn test:unit && start-server-and-test host http://localhost:8080 test"
   },
   "keywords": ["BuckleScript"],
   "author": "",
@@ -23,12 +25,14 @@
     "reason-react": ">=0.3.0"
   },
   "devDependencies": {
+    "@glennsl/bs-jest": "^0.4.2",
     "autoprefixer": "^8.1.0",
     "bs-platform": "^2.2.2",
     "css-loader": "^0.28.10",
     "cypress": "^2.1.0",
     "html-webpack-plugin": "^3.0.4",
     "http-server": "^0.11.1",
+    "jest": "^22.4.3",
     "mini-css-extract-plugin": "^0.2.0",
     "postcss-loader": "^2.1.1",
     "purgecss-webpack-plugin": "^0.20.1",

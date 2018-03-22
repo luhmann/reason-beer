@@ -1,6 +1,6 @@
-[@bs.module "murmurhash"] external v3 : string => string = "v3";
+[@bs.module "murmurhash"] external v3 : string => int = "v3";
 
-let keyHasher = v3;
+let keyHasher = input => v3(input) |> string_of_int;
 
 let jsErrorToExn = jsError => {
   let isObject = rawObj =>
@@ -48,12 +48,19 @@ let logError = err => {
 [@bs.scope ("window", "location")] [@bs.val]
 external basePath : string = "pathname";
 
-let getFilename = url =>
-  Js.String.split("/", url)
-  |> Js.Array.pop
-  |> Js.Option.getWithDefault("")
-  |> Js.String.split(".")
-  |> Js.Array.shift;
+let getFilename = url => {
+  let filename =
+    url
+    |> Js.String.split("/")
+    |> Js.Array.pop
+    |> Js.Option.getWithDefault("")
+    |> Js.String.split(".")
+    |> Js.Array.shift;
+  switch filename {
+  | Some(filename) when String.length(filename) > 0 => Some(filename)
+  | _ => None
+  };
+};
 
 let generateImgUrl = filename =>
   "https://s3.eu-central-1.amazonaws.com/punk-api-images/resized/"
