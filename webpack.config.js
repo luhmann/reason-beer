@@ -1,13 +1,13 @@
-const path = require("path");
-const glob = require("glob");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const WebappWebpackPlugin = require("webapp-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const PurgecssPlugin = require("purgecss-webpack-plugin");
+const path = require('path');
+const glob = require('glob');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WebappWebpackPlugin = require('webapp-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
 
 const PATHS = {
-  src: path.join(__dirname, "src"),
-  build: path.join(__dirname, "build")
+  src: path.join(__dirname, 'src'),
+  build: path.join(__dirname, 'build'),
 };
 
 class TailwindExtractor {
@@ -17,11 +17,11 @@ class TailwindExtractor {
 }
 
 module.exports = (env, argv) => ({
-  entry: path.join(PATHS.src, "index.bs.js"),
-  mode: "development",
+  entry: path.join(PATHS.src, 'index.bs.js'),
+  mode: 'development',
   output: {
     path: PATHS.build,
-    filename: "index.js"
+    filename: 'index.js',
   },
   module: {
     rules: [
@@ -31,36 +31,36 @@ module.exports = (env, argv) => ({
         use: [
           {
             loader:
-              argv && argv.mode === "production"
+              argv && argv.mode === 'production'
                 ? MiniCssExtractPlugin.loader
-                : "style-loader"
+                : 'style-loader',
           },
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
-              importLoaders: 1
-            }
+              importLoaders: 1,
+            },
           },
           {
-            loader: "postcss-loader"
-          }
-        ]
-      }
-    ]
+            loader: 'postcss-loader',
+          },
+        ],
+      },
+    ],
   },
   plugins: [
-    ...(argv && argv.mode === "production"
+    ...(argv && argv.mode === 'production'
       ? [
           new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            filename: "[name].css",
-            chunkFilename: "[id].css"
+            filename: '[name].css',
+            chunkFilename: '[id].css',
           }),
           new PurgecssPlugin({
             paths: [
               ...glob.sync(`${PATHS.src}/**/*.js`),
-              path.join(__dirname, "config", "index.html")
+              path.join(__dirname, 'config', 'index.html'),
             ],
             extractors: [
               {
@@ -68,30 +68,30 @@ module.exports = (env, argv) => ({
 
                 // Specify the file extensions to include when scanning for
                 // class names.
-                extensions: ["js", "html"]
-              }
-            ]
-          })
+                extensions: ['js', 'html'],
+              },
+            ],
+          }),
         ]
       : []),
     new HtmlWebpackPlugin({
       title: "What's with dinner?",
-      template: path.join(__dirname, "config", "index.html"),
-      inject: false
+      template: path.join(__dirname, 'config', 'index.html'),
+      inject: false,
     }),
     new WebappWebpackPlugin({
-      logo: path.resolve(__dirname, "config", "favicon.png"),
+      logo: path.resolve(__dirname, 'config', 'favicon.png'),
       favicons: {
         icons: {
           android: false,
-          appleIcon: false,
+          appleIcon: true,
           coast: false,
           firefox: false,
           yandex: false,
           windows: false,
-          appleStartup: false
-        }
-      }
-    })
-  ]
+          appleStartup: false,
+        },
+      },
+    }),
+  ],
 });
