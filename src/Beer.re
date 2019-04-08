@@ -4,7 +4,7 @@ type brew = {
   id: int,
   name: string,
   tagline: string,
-  image: string,
+  image: Js.Nullable.t(string),
   description: string,
   abv: float,
   ibu: int,
@@ -21,13 +21,13 @@ let make =
       ~ibu,
       ~ebc,
       ~foodPairing,
-      ~image=?,
+      ~image,
       _children
     ) => {
   ...component,
   render: _self => {
     let imageItem =
-      switch image {
+      switch (Js.Nullable.toOption(image)) {
       | None => ReasonReact.nullElement
       | Some(img_url) =>
         let url =
